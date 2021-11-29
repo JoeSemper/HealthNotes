@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "469039806374",
+    "project_id": "health-notes-e17a2",
+    "storage_bucket": "health-notes-e17a2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:469039806374:android:c77298e1cc372972864167",
+        "android_client_info": {
+          "package_name": "com.joesemper.healthnotes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "469039806374-bsdoabeito34tod7u2ck47l8fjkpcamv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANuity9SEcZhL61Z1Gq6o5rvP5mtrlHCM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "469039806374-bsdoabeito34tod7u2ck47l8fjkpcamv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
