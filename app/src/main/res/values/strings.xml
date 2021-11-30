@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Health Notes</string>
+    <string name="divider">/</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.joesemper.healthnotes.ui.compose.main
 
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.joesemper.healthnotes.data.model.HealthData
@@ -7,32 +8,45 @@ import com.joesemper.healthnotes.data.repository.HealthDataRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import java.util.*
 
 class MainViewModel(private val repository: HealthDataRepository): ViewModel() {
+    
+    val currentContent = mutableStateOf<List<HealthData>>(listOf())
 
-    val currentContent = MutableStateFlow<MutableList<HealthData>?>(null)
+    val topPressure = mutableStateOf("0")
+    val bottomPressure = mutableStateOf("0")
+    val pulse = mutableStateOf("0")
 
     init {
         loadAllHealthData()
     }
 
-    fun addNewData(data: HealthData) {
+    fun addNewData() {
         viewModelScope.launch {
-            repository.addNewData(data)
+            repository.addNewData(
+                HealthData(
+                    pressureTop = topPressure.value.toInt(),
+                    pressureBottom = bottomPressure.value.toInt(),
+                    pulse = pulse.value.toInt(),
+                    time = Date().time
+                )
+            )
+            cleanData()
         }
     }
 
     private fun loadAllHealthData() {
         viewModelScope.launch {
             repository.getAllHealthData().collect { contentState ->
-                if (currentContent.value == null) {
-                    currentContent.value = mutableListOf()
-                }
-                currentContent.value?.apply {
-                    addAll(contentState.added)
-                    removeAll(contentState.deleted)
-                }
+                currentContent.value = contentState
             }
         }
+    }
+
+    private fun cleanData() {
+        topPressure.value = "0"
+        bottomPressure.value = "0"
+        pulse.value = "0"
     }
 }
